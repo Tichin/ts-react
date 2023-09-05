@@ -27,7 +27,7 @@ function NewBoxForm({ createBox: Function }):JSX.Element {
   });
 
   /** Update form input. */
-  function handleChange(evt: React.FormEvent<HTMLInputElement>): void {
+  function handleChange(evt: React.ChangeEvent<HTMLInputElement>): void {
     const {name, value} = evt.target as typeof evt.target & {
       height: { value: string  };
       width: { value: string  };
