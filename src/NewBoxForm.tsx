@@ -12,16 +12,29 @@ import { v4 as uuid } from 'uuid';
  * BoxList -> NewBoxForm
  */
 
-function NewBoxForm({ createBox }) {
-  const [formData, setFormData] = useState({
+interface FormDataInterface{
+  height: string;
+  width: string;
+  backgroundColor: string
+
+}
+
+function NewBoxForm({ createBox: Function }):JSX.Element {
+  const [formData, setFormData] = useState<FormDataInterface>({
     height: "",
     width: "",
     backgroundColor: "",
   });
 
   /** Update form input. */
-  function handleChange(evt) {
-    const { name, value } = evt.target;
+  function handleChange(evt: React.FormEvent<HTMLInputElement>): void {
+    const {name, value} = evt.target as typeof evt.target & {
+      height: { value: string  };
+      width: { value: string  };
+      backgroundColor: { value: string  }
+    }
+
+
     setFormData(formData => ({
       ...formData,
       [name]: value,
